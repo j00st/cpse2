@@ -8,6 +8,7 @@ class entity {
 private:
 
     bool selected = false;
+    sf::Vector2f oldMousePos;
     sf::Shape & shape;
 
 protected:
