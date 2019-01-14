@@ -10,8 +10,8 @@ map::~map(){
     outfile.open(filename, std::ofstream::out | std::ofstream::trunc);
     for(auto & e : entities){
         outfile << e->print();
+        delete e;
     }
-    std::cout<<" -- closing map -- " <<std::endl;
 }
 
 std::vector<entity*> map::getEntities(){
@@ -119,5 +119,3 @@ bool map::readEntities(){
         return true;
     }
 }
-
-

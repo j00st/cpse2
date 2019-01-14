@@ -70,12 +70,6 @@ int main( int argc, char *argv[] ){
 	entityList.push_back(new ball(sf::Vector2f{400.0, 300.0}, sf::Vector2f{20.0, 0.0}, sf::Color::Red));
 
 	action actions[] = {
-		// action( entityList[5], entityList[4],	[&](){}),
-		// action( entityList[5], entityList[0],	[&](){ entityList[5]->bounce('y'); }),
-		// action( entityList[5], entityList[1],	[&](){ entityList[5]->bounce('y'); }),
-		// action( entityList[5], entityList[2],	[&](){ entityList[5]->bounce('x'); }),
-		// action( entityList[5], entityList[3],	[&](){ entityList[5]->bounce('x'); }),
-		// action( entityList[5], entityList[4],	[&](){ entityList[5]->bounce('y'); }),
 		action( sf::Keyboard::Left,  			[&](){ entityList[0]->move( sf::Vector2f( -10.0,  0.0 )); }),
 		action( sf::Keyboard::Right, 			[&](){ entityList[0]->move( sf::Vector2f( +10.0,  0.0 )); }),
 		action( sf::Keyboard::Up,    			[&](){ entityList[0]->move( sf::Vector2f(  0.0, -10.0 )); }),
