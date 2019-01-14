@@ -7,15 +7,13 @@
 class picture : public entity {
 private:
 
-    sf::Vector2f size;
     std::string path;
-    sf::Texture texture;
-    sf::Sprite sprite;
+    sf::Texture image;
+    sf::RectangleShape shape;
 
 public:
 
-    picture(sf::Vector2f position, sf::Vector2f size, std::string path);
-    void draw(sf::RenderWindow & window) override;
+    picture(sf::Vector2f position, std::string path);
     
 };
 

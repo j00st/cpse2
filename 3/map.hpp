@@ -2,7 +2,9 @@
 #define _MAP_HPP
 
 #include <SFML/Graphics.hpp>
+#include <fstream>
 #include <iostream>
+#include <string>
 #include "entity.hpp"
 #include "circle.hpp"
 #include "rectangle.hpp"
@@ -10,15 +12,17 @@
 #include "line.hpp"
 
 class map {
-protected:
+private:
 
-	std::vector<entity*> entityList;
-    std::ifstream & input;
+	std::vector<entity*> entities;
+    std::string filename;
+    entity * factory(std::ifstream & input);
 
 public:
 
-	map(std::ifstream & input);
+	map(std::string filename);
     ~map();
+    bool readEntities();
     std::vector<entity*> getEntities();
 
 };

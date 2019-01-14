@@ -1,9 +1,9 @@
 objects = main.o circle.o entity.o rectangle.o picture.o line.o map.o
 
 app : $(objects)
-		g++ -std=c++17 $(objects) -o app -lsfml-graphics -lsfml-window -lsfml-system -lstdc++
+		g++ -w -std=c++17 $(objects) -o app -lsfml-graphics -lsfml-window -lsfml-system -lstdc++
 
-main.o : $(objects)
+main.o : $(objects) exceptions.hpp
 map.o : map.hpp
 entity.o : entity.hpp
 circle.o : circle.hpp entity.o

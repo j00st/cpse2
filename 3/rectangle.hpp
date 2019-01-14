@@ -7,13 +7,11 @@
 class rectangle : public entity {
 private:
 
-    sf::Vector2f size;
-    sf::RectangleShape Rectangle;
+    sf::RectangleShape shape;
 
 public:
 
     rectangle(sf::Vector2f position, sf::Color color, sf::Vector2f size);
-    void draw(sf::RenderWindow & window) override;
     
 };
 

@@ -7,13 +7,11 @@
 class circle : public entity {
 private:
 
-    float size;
-    sf::CircleShape Circle;
+    sf::CircleShape shape;
 
 public:
 
     circle(sf::Vector2f position, sf::Color color, float size);
-    void draw(sf::RenderWindow & window) override;
     
 };
 

@@ -2,19 +2,24 @@
 #define _ENTITY_HPP
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/Mouse.hpp>
 
 class entity {
+private:
+
+    bool selected = false;
+    sf::Shape & shape;
+
 protected:
 
 	sf::Vector2f position;
     sf::Color color;
-    std::string type;
 
 public:
 
-	entity(sf::Vector2f position, sf::Color color);
-    entity(sf::Vector2f position);
-	virtual void draw(sf::RenderWindow & window) = 0;
+	entity(sf::Shape & shape);
+	virtual void draw(sf::RenderWindow & window);
+    void update(sf::RenderWindow & window);
 
 };
 

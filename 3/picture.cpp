@@ -1,17 +1,14 @@
 #include "picture.hpp"
+#include "exceptions.hpp"
 
-picture::picture(sf::Vector2f position, sf::Vector2f size, std::string path):
-    entity(position),
-    size(size),
+picture::picture(sf::Vector2f position, std::string path):
+    entity(shape),
     path(path)
 {
-    if(!texture.loadFromFile(path)){
-        // EXCEPTION
+    if(!image.loadFromFile(path)){
+        throw file_not_found(path);
     }
-    sprite.setTexture(texture);
-}
-
-void picture::draw(sf::RenderWindow & window) {
-    sprite.setPosition(position);
-    window.draw(sprite);
+    shape.setPosition(position);
+    shape.setSize((sf::Vector2f)image.getSize());
+    shape.setTexture(&image);
 }

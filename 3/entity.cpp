@@ -1,12 +1,19 @@
 #include <SFML/Graphics.hpp>
-#include "entity.hpp"
 #include <iostream>
+#include "entity.hpp"
 
-entity::entity(sf::Vector2f position, sf::Color color) :
-	position(position),
-    color(color)
+entity::entity(sf::Shape & shape) :
+	shape(shape)
 {}
 
-entity::entity(sf::Vector2f position) :
-	position(position)
-{}
+void entity::update(sf::RenderWindow & window){
+    if(shape.getGlobalBounds().contains((sf::Vector2f)sf::Mouse::getPosition(window))){
+        if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+            selected = true;
+        }
+    }
+}
+
+void entity::draw(sf::RenderWindow & window){
+    window.draw(shape);
+}
