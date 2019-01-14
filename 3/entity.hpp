@@ -10,17 +10,17 @@ private:
     bool selected = false;
     sf::Vector2f oldMousePos;
     sf::Shape & shape;
+    void setPos(sf::Vector2f newPos);
 
-protected:
+public:
 
 	sf::Vector2f position;
     sf::Color color;
 
-public:
-
 	entity(sf::Shape & shape);
 	virtual void draw(sf::RenderWindow & window);
     void update(sf::RenderWindow & window);
+    virtual std::string print();
 
 };
 

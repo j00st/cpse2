@@ -14,6 +14,7 @@ private:
 public:
 
     picture(sf::Vector2f position, std::string path);
+    std::string print() override;
     
 };
 

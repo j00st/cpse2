@@ -4,7 +4,14 @@
 
 entity::entity(sf::Shape & shape) :
 	shape(shape)
-{}
+{
+    position = shape.getPosition();
+}
+
+void entity::setPos(sf::Vector2f newPos){
+    shape.setPosition(newPos);
+    position = newPos;
+}
 
 void entity::update(sf::RenderWindow & window){
     if(shape.getGlobalBounds().contains((sf::Vector2f)sf::Mouse::getPosition(window))){
@@ -15,7 +22,7 @@ void entity::update(sf::RenderWindow & window){
         }
     }
     if(selected){
-        position = position + ((sf::Vector2f)sf::Mouse::getPosition(window) - oldMousePos);
+        setPos(shape.getPosition() + ((sf::Vector2f)sf::Mouse::getPosition(window) - oldMousePos));
         oldMousePos = (sf::Vector2f)sf::Mouse::getPosition(window);
     } else{
         oldMousePos = (sf::Vector2f)sf::Mouse::getPosition(window);
@@ -23,6 +30,11 @@ void entity::update(sf::RenderWindow & window){
 }
 
 void entity::draw(sf::RenderWindow & window){
-    shape.setPosition(position);
     window.draw(shape);
+}
+
+std::string entity::print(){
+    std::string s;
+    s = std::string{"VOID ("} + std::to_string(position.x) + "," + std::to_string(position.y) + ") ";
+    return s;
 }

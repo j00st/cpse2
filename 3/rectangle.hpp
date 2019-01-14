@@ -12,6 +12,7 @@ private:
 public:
 
     rectangle(sf::Vector2f position, sf::Color color, sf::Vector2f size);
+    std::string print() override;
     
 };
 

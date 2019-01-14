@@ -12,3 +12,9 @@ picture::picture(sf::Vector2f position, std::string path):
     shape.setSize((sf::Vector2f)image.getSize());
     shape.setTexture(&image);
 }
+
+std::string picture::print(){
+    std::string s;
+    s = std::string{"PICTURE ("} + std::to_string((int)shape.getPosition().x) + "," + std::to_string((int)shape.getPosition().y) + ") " + path + '\n';
+    return s;
+}

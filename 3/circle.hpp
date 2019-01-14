@@ -12,6 +12,7 @@ private:
 public:
 
     circle(sf::Vector2f position, sf::Color color, float size);
+    std::string print() override;
     
 };
 

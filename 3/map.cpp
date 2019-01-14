@@ -5,7 +5,12 @@ map::map(std::string filename):
     filename(filename)
 {}
 
-map::~map(){}
+map::~map(){
+    for(auto & e : entities){
+        std::cout << e->print();
+    }
+    std::cout<<" -- closing map -- " <<std::endl;
+}
 
 std::vector<entity*> map::getEntities(){
     return entities;
