@@ -7,7 +7,7 @@
 class entity {
 private:
 
-    bool selected = false;
+    static entity * currentEntity;
     sf::Vector2f oldMousePos;
     sf::Shape & shape;
     void setPos(sf::Vector2f newPos);
@@ -19,7 +19,7 @@ public:
 
 	entity(sf::Shape & shape);
 	virtual void draw(sf::RenderWindow & window);
-    void update(sf::RenderWindow & window);
+    void update(sf::Vector2f mousePos);
     virtual std::string print();
 
 };

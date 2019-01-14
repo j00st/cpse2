@@ -21,8 +21,9 @@ int main( int argc, char *argv[] ){
 
 	while (window.isOpen()) {
 		window.clear();
+		sf::Vector2f mousePos = (sf::Vector2f)sf::Mouse::getPosition(window);
 		for(auto & entity : entities){
-			entity->update(window);
+			entity->update(mousePos);
 		}
 		for(auto & entity : entities){
 			entity->draw(window);

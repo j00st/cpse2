@@ -6,12 +6,15 @@ map::map(std::string filename):
 {}
 
 map::~map(){
-    std::ofstream outfile;
-    outfile.open(filename, std::ofstream::out | std::ofstream::trunc);
-    for(auto & e : entities){
-        outfile << e->print();
-        delete e;
+    try {
+        std::ofstream outfile;
+        outfile.open(filename, std::ofstream::out | std::ofstream::trunc);
+        for(auto & e : entities){
+            outfile << e->print();
+            delete e;
+        }
     }
+    catch(file_not_found(filename)) {};
 }
 
 std::vector<entity*> map::getEntities(){

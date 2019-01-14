@@ -8,28 +8,27 @@ entity::entity(sf::Shape & shape) :
     position = shape.getPosition();
 }
 
+entity * entity::currentEntity = NULL;
+
 void entity::setPos(sf::Vector2f newPos){
     shape.setPosition(newPos);
     position = newPos;
 }
 
-void entity::update(sf::RenderWindow & window){
-    if(shape.getGlobalBounds().contains((sf::Vector2f)sf::Mouse::getPosition(window))){
+void entity::update(sf::Vector2f mousePos){
+    if(currentEntity == NULL && shape.getGlobalBounds().contains(mousePos)){
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-            selected = true;
+            currentEntity = this;
         } else{
-            selected = false;
+            currentEntity = NULL;
         }
     } else{
-        selected = false;
+        currentEntity = NULL;
     }
-
-    if(selected){
-        setPos(shape.getPosition() + ((sf::Vector2f)sf::Mouse::getPosition(window) - oldMousePos));
-        oldMousePos = (sf::Vector2f)sf::Mouse::getPosition(window);
-    } else{
-        oldMousePos = (sf::Vector2f)sf::Mouse::getPosition(window);
+    if(currentEntity == this){
+        setPos(shape.getPosition() + ((sf::Vector2f)mousePos - oldMousePos));
     }
+    oldMousePos = mousePos;
 }
 
 void entity::draw(sf::RenderWindow & window){
