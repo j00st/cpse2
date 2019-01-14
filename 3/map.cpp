@@ -6,8 +6,10 @@ map::map(std::string filename):
 {}
 
 map::~map(){
+    std::ofstream outfile;
+    outfile.open(filename, std::ofstream::out | std::ofstream::trunc);
     for(auto & e : entities){
-        std::cout << e->print();
+        outfile << e->print();
     }
     std::cout<<" -- closing map -- " <<std::endl;
 }

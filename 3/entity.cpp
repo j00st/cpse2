@@ -20,7 +20,10 @@ void entity::update(sf::RenderWindow & window){
         } else{
             selected = false;
         }
+    } else{
+        selected = false;
     }
+
     if(selected){
         setPos(shape.getPosition() + ((sf::Vector2f)sf::Mouse::getPosition(window) - oldMousePos));
         oldMousePos = (sf::Vector2f)sf::Mouse::getPosition(window);

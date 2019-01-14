@@ -30,7 +30,7 @@ int main( int argc, char *argv[] ){
 
 		window.display();
 
-		sf::sleep( sf::milliseconds( 2 ));
+		sf::sleep( sf::milliseconds( 1 ));
 
         sf::Event event;		
 	    while( window.pollEvent(event) ){
