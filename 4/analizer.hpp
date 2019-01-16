@@ -19,9 +19,12 @@ public:
     void make_lowercase();
     void print_character_map_alphabetic();
     void print_character_map_descending();
+    void print_word_map_descending();
 private:
-    typedef std::function<bool(std::pair<unsigned char, uint_fast16_t> a, std::pair<unsigned char, uint_fast16_t> b)> comparator;
-    std::set<std::pair<unsigned char, uint_fast16_t>, comparator> map_characters(comparator compFunctor);
+    typedef std::function<bool(std::pair<unsigned char, uint_fast16_t> a, std::pair<unsigned char, uint_fast16_t> b)> charComparator;
+    typedef std::function<bool(std::pair<std::string, uint_fast16_t> a, std::pair<std::string, uint_fast16_t> b)> stringComparator;
+    std::set<std::pair<unsigned char, uint_fast16_t>, charComparator> map_characters(charComparator compFunctor);
+    std::set<std::pair<std::string, uint_fast16_t>, stringComparator> map_words(stringComparator compFunctor);
     std::vector<unsigned char> characters;
 };
 
