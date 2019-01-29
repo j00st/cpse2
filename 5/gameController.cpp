@@ -1,18 +1,39 @@
 #include "gameController.hpp"
 
+gameController::gameController() {
+    char c;
+    for(;;){
+        std::cout << "Enter T for textual or G for graphical interface:" << std::endl;
+        std::cin >> c;
+        if(c == 'T') {
+            view = new viewText();
+            break;
+        } else if(c == 'G') {
+            view = new viewGraphical();
+            break;
+        } else {
+            std::cout << c << " was not recognised.";
+        }
+    }
+}
+
+gameController::~gameController() {
+    delete view;
+}
+
 void gameController::undo() {
-    commands.pop_back();
+    // commands.pop_back();
 }
 
-const std::vector<command> gameController::getCommands() {
-    return commands;
-}
+// std::vector<command> gameController::getCommands() {
+//     return commands;
+// }
 
-const gameController::player gameController::checkWinner() {
-    // ...
+const uint_fast8_t gameController::checkWinner() {
+    return 0;
 }
 
 void gameController::switchPlayer() {
-    if(currentPlayer == player::O) currentPlayer = player::X;
-    else currentPlayer == player::O;
+    if(currentPlayer == 1) currentPlayer = 2;
+    else currentPlayer == 1;
 }

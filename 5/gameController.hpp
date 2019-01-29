@@ -12,18 +12,19 @@
 class gameController {
 public:
 
-    const enum class player{ X, O };
-
-    gameController() {};
+    gameController();
+    ~gameController();
     void undo();
-    const std::vector<command> getCommands();
+    // std::vector<command*> getCommands();
 
 private:
 
-    std::vector<command> commands;
-    player currentPlayer = player::O;
+    // std::vector<command*> commands;
+    uint_fast8_t currentPlayer = 1;
+    viewController * view = nullptr;
+    uint_fast8_t field[9] = { 0 };
 
-    const player checkWinner();
+    const uint_fast8_t checkWinner();
     void switchPlayer();
 
 };
