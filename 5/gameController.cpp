@@ -22,12 +22,12 @@ gameController::~gameController() {
 }
 
 void gameController::undo() {
-    // commands.pop_back();
+    commands.pop_back();
 }
 
-// std::vector<command> gameController::getCommands() {
-//     return commands;
-// }
+std::vector<command*> gameController::getCommands() {
+    return commands;
+}
 
 const uint_fast8_t gameController::checkWinner() {
     return 0;
@@ -36,4 +36,11 @@ const uint_fast8_t gameController::checkWinner() {
 void gameController::switchPlayer() {
     if(currentPlayer == 1) currentPlayer = 2;
     else currentPlayer == 1;
+}
+
+void gameController::update() {
+    checkWinner();
+    for(auto & x : commands){
+        field[x->getPlace()] = x->getPlayer();
+    }
 }

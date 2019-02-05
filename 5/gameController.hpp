@@ -15,11 +15,12 @@ public:
     gameController();
     ~gameController();
     void undo();
-    // std::vector<command*> getCommands();
+    std::vector<command*> getCommands();
+    void update();
 
 private:
 
-    // std::vector<command*> commands;
+    std::vector<command*> commands;
     uint_fast8_t currentPlayer = 1;
     viewController * view = nullptr;
     uint_fast8_t field[9] = { 0 };
