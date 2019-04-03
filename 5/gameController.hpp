@@ -21,11 +21,11 @@ public:
 private:
 
     std::vector<command*> commands;
-    uint_fast8_t currentPlayer = 1;
+    int currentPlayer = 1;
     viewController * view = nullptr;
-    uint_fast8_t field[9] = { 0 };
+    int field[9] = { 0 };
 
-    const uint_fast8_t checkWinner();
+    void checkWinner();
     void switchPlayer();
 
 };

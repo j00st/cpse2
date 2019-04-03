@@ -9,7 +9,9 @@ class viewText : public viewController {
 public:
 
     viewText();
-    void draw(uint_fast8_t field[9]) override;
+    void draw(int field[9]) override;
+    void victory(int player) override;
+    char prompt(int currentPlayer) override;
 
 };
 

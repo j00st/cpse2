@@ -1,14 +1,14 @@
 #include "command.hpp"
 
-command::command(uint_fast8_t player, const uint_fast8_t place) :
+command::command(int player, const int place) :
     player(player),
     place(place)
 {}
 
-uint_fast8_t command::getPlayer() {
+int command::getPlayer() {
     return player;
 }
 
-uint_fast8_t command::getPlace() {
+int command::getPlace() {
     return place;
 }
