@@ -5,6 +5,7 @@
 
 #include "viewController.hpp"
 #include "SFML/Graphics.hpp"
+#include "tile.hpp"
 
 class viewGraphical : public viewController {
 public:
@@ -17,7 +18,9 @@ public:
 
 private:
 
-    sf::RenderWindow window;
+    sf::RenderWindow window{ sf::VideoMode{ 500, 500 }, "tic-tac-toe"};
+    std::vector<tile*> tiles;
+    sf::Vector2i mousePos;
 
 };
 
