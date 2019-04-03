@@ -14,6 +14,7 @@ public:
     ~viewGraphical();
     void draw(int field[9]) override;
     void victory(int player) override;
+    void tie() override;
     char prompt(int currentPlayer) override;
 
 private:

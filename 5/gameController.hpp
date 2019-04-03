@@ -18,6 +18,8 @@ public:
     std::vector<command*> getCommands();
     void update();
 
+    enum input{ Textual, Graphical, Undo, unrecognized };
+
 private:
 
     std::vector<command*> commands;
@@ -27,6 +29,8 @@ private:
 
     void checkWinner();
     void switchPlayer();
+    input charToInput(char c);
+    void clearField();
 
 };
 

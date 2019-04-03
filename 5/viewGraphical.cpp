@@ -35,14 +35,14 @@ void viewGraphical::draw(int field[9]) {
 
 char viewGraphical::prompt(int currentPlayer) {
     sf::Event event;
-    while( window.pollEvent(event)) {
-			if(event.type == sf::Event::Closed)
-				window.close();
-			else if(event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left ){
+    while(window.isOpen()){
+        while( window.pollEvent(event)) {
+            if(event.type == sf::Event::Closed)
+                window.close();
+            else if(event.type == event.MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left ){
                 mousePos.x = sf::Mouse::getPosition().x;
                 mousePos.y = sf::Mouse::getPosition().y - 65;
-                std::cout << "mouseclick (left) on x=" << mousePos.x << " y=" << mousePos.y << std::endl;
-				if(mousePos.y > 20 && mousePos.y < 120){
+                if(mousePos.y > 20 && mousePos.y < 120){
                     if(mousePos.x > 20 && mousePos.x < 120) return '0';
                     if(mousePos.x > 130 && mousePos.x < 230) return '1';
                     if(mousePos.x > 240 && mousePos.x < 340) return '2';
@@ -58,7 +58,10 @@ char viewGraphical::prompt(int currentPlayer) {
                     if(mousePos.x > 20 && mousePos.x < 340) return 'U';
                 }
             }
-		}
+            sf::sleep(sf::milliseconds(20));
+        }
+    }
+    return 0;
 }
 
 void viewGraphical::victory(int player) {
@@ -74,6 +77,16 @@ void viewGraphical::victory(int player) {
             t->draw(window);
         }
     }
+    window.display();
+    sf::sleep(sf::seconds(2));
+}
+
+void viewGraphical::tie() {
+    window.clear();
+    for(auto & t : tiles){
+            t->setColor(sf::Color::Yellow);
+            t->draw(window);
+        }
     window.display();
     sf::sleep(sf::seconds(2));
 }

@@ -20,11 +20,20 @@ char viewText::prompt(int currentPlayer) {
     if(c == 'U' || (c > 47 && c < 57)) return c;
     std::cout   << "Character " << c << " is not allowed." << std::endl;
     prompt(currentPlayer);
+
+    return 0;
 }
 
 void viewText::victory(int player) {
     std::cout   << "\n========================="
                 << "\n= PLAYER " << players[player] << " WON THE GAME ="
+                << "\n=   starting new game   ="
+                << "\n=========================" <<std::endl;
+}
+
+void viewText::tie() {
+    std::cout   << "\n========================="
+                << "\n=      IT IS A TIE      ="
                 << "\n=   starting new game   ="
                 << "\n=========================" <<std::endl;
 }

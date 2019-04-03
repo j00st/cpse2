@@ -5,26 +5,41 @@ gameController::gameController() {
     for(;;){
         std::cout << "Enter T for textual or G for graphical interface:" << std::endl;
         std::cin >> c;
-        if(c == 'T') {
-            view = new viewText();
-            update();
-            break;
-        } else if(c == 'G') {
-            view = new viewGraphical();
-            update();
-            break;
-        } else {
-            std::cout << c << " was not recognised.";
+        switch(charToInput(c)){
+            case Textual:
+                view = new viewText();
+                update();
+                break;
+            case Graphical:
+                view = new viewGraphical();
+                update();
+                break;
+            default:
+                std::cout << c << " was not recognised. ";
+                break;
         }
     }
+}
+
+gameController::input gameController::charToInput(char c){
+    if( c == 'T' ) return input::Textual;
+    else if( c == 'G' ) return input::Graphical;
+    else if( c == 'U' ) return input::Undo;
+    else return input::unrecognized;
 }
 
 gameController::~gameController() {
     delete view;
 }
 
+void gameController::clearField(){
+    for(int i = 0; i < 9; i++){
+        field[i] = 0;
+    }
+}
+
 void gameController::undo() {
-    field[commands.back()->getPlace()] = 0;
+    //field[commands.back()->getPlace()] = 0;
     commands.pop_back();
 }
 
@@ -43,9 +58,17 @@ void gameController::checkWinner() {
             currentPlayer == field[patterns[x][1]] &&
             currentPlayer == field[patterns[x][2]] ) {
             view->victory(currentPlayer);
+            clearField();
             for(auto & y : commands){
-                undo();
+                commands.pop_back();
             }
+        }
+    }
+    if(commands.size() == 9){
+        view->tie();
+        clearField();
+        for(auto & y : commands){
+            commands.pop_back();
         }
     }
 }
@@ -58,12 +81,13 @@ void gameController::switchPlayer() {
 void gameController::update() {
     view->draw(field);
     char c = view->prompt(currentPlayer);
-    if(c == 'U'){
+    if(charToInput(c) == Undo){
         if(commands.size() > 0) undo();
         else update();
     } else if(field[c-48] == 0){
         commands.push_back(new command(currentPlayer, int(c - 48)));
     } else update();
+    clearField();
     for(auto & x : commands){
         field[x->getPlace()] = x->getPlayer();
     }
